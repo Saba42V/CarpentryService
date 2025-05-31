@@ -23,7 +23,8 @@
     <section id="home" class="home-section">
         <div class="content">
             <h2>Book a Service</h2>
-            <form action="submit_form" method="post" class="form-animated">
+            <!-- Updated form: removed action/method, added onsubmit JS -->
+            <form id="bookingForm" onsubmit="sendWhatsApp(event)">
                 <label for="model">Type of service you Need:</label>
                 <input type="text" id="model" name="model" required><br>
 
@@ -53,7 +54,7 @@
                     <input type="checkbox" id="terms" name="terms" required> I agree to the Terms and Conditions
                 </label><br>
 
-               <!-- ...   <div class="g-recaptcha" data-sitekey="your-site-key"></div><br>  -->
+                <!-- ...   <div class="g-recaptcha" data-sitekey="your-site-key"></div><br>  -->
 
                 <input type="submit" value="Book Now">
             </form>
@@ -63,6 +64,34 @@
     <script>
         window.onbeforeunload = function () {
             window.scrollTo(0, 0);
+        }
+
+        // Update with your WhatsApp number (including country code, no + or spaces)
+        const WHATSAPP_NUMBER = "919994507975"; // Example: 919876543210 for India. Replace with your real number!
+
+        function sendWhatsApp(event) {
+            event.preventDefault();
+            var service = document.getElementById('model').value;
+            var currentLocation = document.getElementById('regnum').value;
+            var serviceDate = document.getElementById('serviceDate').value;
+            var customerName = document.getElementById('customerName').value;
+            var phone = document.getElementById('phone').value;
+            var location = document.getElementById('location').value;
+
+            var message = 
+                "*New Carpentry Service Booking*\n"
+                + "Name: " + customerName + "\n"
+                + "Phone: " + phone + "\n"
+                + "Type of Service: " + service + "\n"
+                + "Current Location: " + currentLocation + "\n"
+                + "Preferred Service Date: " + serviceDate + "\n"
+                + "Area: " + location;
+
+            var encodedMessage = encodeURIComponent(message);
+
+            var whatsappURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodedMessage;
+
+            window.open(whatsappURL, '_blank');
         }
     </script>
 </body>
