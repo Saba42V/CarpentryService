@@ -28,9 +28,11 @@
                 <label for="model">Type of service you Need:</label>
                 <input type="text" id="model" name="model" required><br>
 
+                <!-- Remove these lines:
                 <label for="regnum">Current location:</label>
                 <input type="text" id="regnum" name="regnum" required><br>
-
+                -->
+                
                 <label for="serviceDate">Date when you want service to be provided:</label>
                 <input type="date" id="serviceDate" name="serviceDate" required><br>
 
@@ -72,7 +74,7 @@
         function sendWhatsApp(event) {
             event.preventDefault();
             var service = document.getElementById('model').value;
-            var currentLocation = document.getElementById('regnum').value;
+            // var currentLocation = document.getElementById('regnum').value;
             var serviceDate = document.getElementById('serviceDate').value;
             var customerName = document.getElementById('customerName').value;
             var phone = document.getElementById('phone').value;
@@ -83,7 +85,7 @@
                 + "Name: " + customerName + "\n"
                 + "Phone: " + phone + "\n"
                 + "Type of Service: " + service + "\n"
-                + "Current Location: " + currentLocation + "\n"
+                // + "Current Location: " + currentLocation + "\n"
                 + "Preferred Service Date: " + serviceDate + "\n"
                 + "Area: " + location;
 
